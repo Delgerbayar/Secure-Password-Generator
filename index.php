@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ERROR | E_PARSE);
 function generate($length) {
 
 	if(isset($_POST['uppercase']))
@@ -45,24 +46,23 @@ function generate($length) {
 		<input type="checkbox" name="specialchars" value="specialchars" <?php if(isset($_POST['specialchars'])) echo("checked='checked'"); ?>>Special chars<br>
 		 
 		<select name="length">
+		<?php	
+		for($i=6; $i<=20; $i++)	{
+			echo('<option name="$i"'); 
+			if($_POST['length']=="$i") {
+				echo('selected="selected"');
+			}
+			echo(">$i</option>");
+		}
+		?>
 
-		<option name="six">6</option> 
-		<option>7</option>
-		<option>8</option>
-		<option>9</option>
-		<option>10</option>
-		<option>11</option>
-		<option>12</option>	
-		<option>13</option>	
-		<option>14</option>	
-		<option>15</option>
 		</select>
 		Length
 		<br>
-		<input type="submit" name="Generate" value="generate">
-		<input type="text" value="<?php echo(generate($_POST['length']))?>">
+		<input type="submit" name="Generate" value="Generate">
+		<input type="text" value="<?php echo(generate($_POST['length']))?>"><br><br>
+		<a href="https://github.com/Delgerbayar/">Powered by DB</a>
 
-</select>
 	</form>
 </body>
 </html>
